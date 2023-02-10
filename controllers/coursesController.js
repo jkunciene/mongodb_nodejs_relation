@@ -9,10 +9,21 @@ const createCourse = async (req, res) => {
             author: req.body.author,
        })
         res.status(200).json(course)
+}
 
-    // name: String,
-    // author: 
+const getCourses = async (req, res) => {
+    
+    const courses = await Course
+    .find()
+    .populate('author', 'name about -_id')
+
+        if(!courses) {res.status(404).send("Not found")}
+        else {
+            res.status(200).json(courses)
+        }      
+
 }
 module.exports = {
-    createCourse
+    createCourse,
+    getCourses
 }
