@@ -1,0 +1,18 @@
+const Course = require('../models/Course');
+
+const createCourse = async (req, res) => {
+    if(!req.body.name || !req.body.author){ 
+        res.status(404).send("Not found")}
+
+        const course = await Course.create({
+            name: req.body.name,
+            author: req.body.author,
+       })
+        res.status(200).json(course)
+
+    // name: String,
+    // author: 
+}
+module.exports = {
+    createCourse
+}
